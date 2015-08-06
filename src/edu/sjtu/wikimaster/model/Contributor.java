@@ -1,6 +1,6 @@
 package edu.sjtu.wikimaster.model;
 
-public class Contributor {
+public class Contributor implements Cloneable{
 	private String name;
 	private String id;
 	private String ip;
@@ -39,5 +39,18 @@ public class Contributor {
 		super();
 		this.ip = ip;
 		this.isAnonymous = true;
+	}
+	
+	public Contributor(){
+		super();
+	}
+	public Contributor copy(){
+		try {
+			return (Contributor) clone();
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

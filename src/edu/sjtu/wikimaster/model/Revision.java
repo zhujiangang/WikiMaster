@@ -1,6 +1,6 @@
 package edu.sjtu.wikimaster.model;
 
-public class Revision {
+public class Revision implements Cloneable{
 	private String timestamp;
 	private String id;
 	private String model;
@@ -70,5 +70,15 @@ public class Revision {
 	}
 	public void setContributor(Contributor contributor) {
 		this.contributor = contributor;
+	}
+	
+	public Revision copy(){
+		try {
+			return (Revision) clone();
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
