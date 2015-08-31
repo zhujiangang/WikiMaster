@@ -46,6 +46,8 @@ public class CommonnessHandler extends DefaultHandler {
 	public void characters(char[] ch, int start, int length)
 			throws SAXException {
 		// TODO Auto-generated method stub
+		if(cnt<8500000 || cnt>=10000000)
+			return;
 		String content = new String(ch, start, length);
 		if ("title".equals(preTag)) {
 			article.setTitle(content);
@@ -69,11 +71,11 @@ public class CommonnessHandler extends DefaultHandler {
 	public void endElement(String uri, String localName, String qName)
 			throws SAXException {
 		// TODO Auto-generated method stub
+		if(cnt<8500000 || cnt>=10000000)
+			return;
 		super.endElement(uri, localName, qName);
 		if ("page".equals(qName)) {
 			// store
-			if(cnt<5063385)
-				return;
 			parseContent(article, text);
 			text = "";
 			article = null;

@@ -17,10 +17,19 @@ public class CommonnessCalculator {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		CommonnessCalculator com = new CommonnessCalculator(new File("./data/commonness2"));
+		//CommonnessCalculator com = new CommonnessCalculator(args[0],new File(args[1]));
+		CommonnessCalculator com = new CommonnessCalculator(new File("./data/commonness8500000-10000000"));
 		com.compute();
 	}
 	
+	
+	public CommonnessCalculator(String dumpPath, File outFile) {
+		super();
+		this.dumpPath = dumpPath;
+		this.outFile = outFile;
+	}
+
+
 	public CommonnessCalculator(File outFile) {
 		// TODO Auto-generated constructor stub
 		this.outFile = outFile;

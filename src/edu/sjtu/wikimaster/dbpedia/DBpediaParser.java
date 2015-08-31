@@ -19,15 +19,30 @@ public class DBpediaParser {
 		File pageLinkTTL = new File("C:/Research/EL/data/page_links_en.ttl");
 		File outlink = new File("C:/Research/EL/data/outlink_dbpedia");
 		File nameId = new File("C:/Research/EL/data/nameid_dbpedia");
-
+		File nameId_new = new File("C:/Research/EL/data/nameid_dbpedia_new");
 		DBpediaParser parser = new DBpediaParser();
-		parser.parsePageLinks(pageLinkTTL, outlink, nameId);
+		parser.cleanNamdIdMap(nameId, nameId_new);
+		//parser.parsePageLinks(pageLinkTTL, outlink, nameId);
 		
 //		String uri = "<http://dbpedia.org/resource/Computer_accessibility> .";
 //		String namespace = "http://dbpedia.org/resource";
 //		System.out.println(extract(uri, namespace));
 	}
 
+	public void cleanNamdIdMap(File srcNameId,File dstNameId){
+		final BufferedWriter writer = FileUtils.getBufferedWriter(dstNameId);
+		FileUtils.readLine(srcNameId, new ILineHandler() {
+			
+			@Override
+			public void process(String line) throws Exception {
+				// TODO Auto-generated method stub
+				if(line.startsWith("File:"))
+					return;
+				writer.write(line+"\n");
+			}
+		});
+		FileUtils.closeWriter(writer);
+	}
 	public void parsePageLinks(File pageLinkTTL, File outlink, File nameId) {
 		final Map<String, Integer> nameIdMap = new HashMap<String, Integer>();
 		final int[] cnt = { 0 };
